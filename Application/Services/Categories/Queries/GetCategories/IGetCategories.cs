@@ -1,0 +1,14 @@
+﻿using Common.Dto;
+using Domain.Entities.Categories;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Services.Categories.Queries.GetCategories
+{
+    public interface IGetCategories
+    {
+        public ResultDto<List<CategoryDto>> ExecutResult(long? parentId);    
+    }
+}

@@ -1,0 +1,136 @@
+﻿@using Application.Services.Categories.Queries.GetCategories;
+@model List<CategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Zero configuration table -->
+        <section id="configuration">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-wrap bar-success">
+                                <h4 class="card-title">لیست دسته بندی ها</h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show">
+                            <div class="card-block card-dashboard">
+                                <p class="card-text">دسته بندی محصولات فروشگاه </p>
+                                <a href="~/admin/categories/addnewcategory" class="btn btn-success">افزودن دسته بندی جدید</a>
+
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <div class="col-sm-12">
+                                        <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="دسته بندی: activate to sort column descending" style="width: 222px;">دسته بندی</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="پدر: activate to sort column descending" style="width: 222px;">پدر</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 222px;"></th> 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">@item.Name</td>
+                                                        <td>
+                                                            @{
+                                                                string parent = item.Parent != null ? item.Parent.Name : "-";
+                                                        }
+
+                                                        <text> @parent </text>
+                                                        @*<button class="btn btn-danger" onclick="DeleteCategory('@item.Id')">حذف</button>*@
+                                                    </td>
+                                                    <td>
+                                                        @if (item.Parent == null)
+                                                        {
+                                                            <a href="~/admin/categories/addnewcategory?ParentId=@item.Id" class="btn btn-success">افزودن فرزند</a>
+                                                        }
+
+                                                        @if (item.HasChild == true)
+                                                        {
+                                                            <a href="~/admin/categories/index?ParentId=@item.Id" class="btn btn-info">مشاهده لیست فرزند ها </a>
+                                                        }
+                                                        
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </div>
+</div>
+@section Scripts
+{
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+
+    <script>
+        
+
+        function DeleteCategory(id) {
+            swal.fire({
+                title: 'حذف دسته بندی',
+                text: "کاربر گرامی از حذف دسته بندی مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#7cacbe',
+                confirmButtonText: 'بله ، دسته بندی حذف شود',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+                    var postData = {
+                        'id': id
+                    };
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "Delete",
+                        data: postData,
+                        success: function (data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function (isConfirm) {
+                                    location.reload();
+                                });
+                            }
+                            else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        }
+
+                    });
+
+                }
+            })
+        </script>
+}
