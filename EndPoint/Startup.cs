@@ -5,6 +5,7 @@ using Application.Services.Categories.Commands.RemoveCategory;
 using Application.Services.Categories.FacadPattern;
 using Application.Services.Categories.Queries.GetAllCategory;
 using Application.Services.Categories.Queries.GetCategories;
+using Application.Services.Categories.Queries.GetMenuItem;
 using Application.Services.Products.Queries.GetProductSiteById;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,7 @@ namespace EndPoint
             services.AddScoped<IAddNewCategory, AddNewCategory>();
             services.AddScoped<IRemoveCategory, RemoveCategory>();
             services.AddScoped<IFacadPattern, ProductFacad>();
+            services.AddScoped<IGetMenuItem, GetMenuItem>();
             services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(
             Configuration.GetConnectionString("TestWebDbContext")));
         }

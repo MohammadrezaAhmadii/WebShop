@@ -45,8 +45,4 @@
     <ProjectReference Include="..\Persistance\Persistance.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\Components\GetMenu\" />
-  </ItemGroup>
-
 </Project>

@@ -7,6 +7,7 @@ using Application.Services.Products.Commands;
 using Application.Services.Products.Queries.GetAllProductForSite;
 using Application.Services.Products.Queries.GetProductAdmin;
 using Application.Services.Products.Queries.GetProductDetailAdmin;
+using Application.Services.Products.Queries.GetProductForSite;
 using Application.Services.Products.Queries.GetProductSiteById;
 using Microsoft.AspNetCore.Hosting;
 using System;
@@ -95,5 +96,14 @@ namespace Application.Services.Categories.FacadPattern
                 return _getAllProductForSite = _getAllProductForSite ?? new GetAllProductForSite(_context);
             }
         }
+        private IGetProductForSite _getProductForSite;
+        public IGetProductForSite GetProductForSite 
+        {
+            get
+            {
+                return _getProductForSite = _getProductForSite ?? new GetProductForSite(_context);
+            }
+        }
+
     }
 }

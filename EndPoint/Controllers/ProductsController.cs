@@ -10,9 +10,9 @@ namespace EndPoint.Controllers
         {
             _facadPattern = facadPattern;
         }
-        public IActionResult Index(string searchkey,long? catId = null,int page = 1)
+        public IActionResult Index(string searchkey,int page = 1, long? Id = null)
         {
-            return View(_facadPattern.GetAllProductForSite.Execute(searchkey,catId,page).Date);
+            return View(_facadPattern.GetProductForSite.ResultDto(searchkey, page,Id).Date);
         }
         public IActionResult Detail(long Id)
         {

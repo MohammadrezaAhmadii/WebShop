@@ -5,6 +5,7 @@ using Application.Services.Products.Commands;
 using Application.Services.Products.Queries.GetAllProductForSite;
 using Application.Services.Products.Queries.GetProductAdmin;
 using Application.Services.Products.Queries.GetProductDetailAdmin;
+using Application.Services.Products.Queries.GetProductForSite;
 using Application.Services.Products.Queries.GetProductSiteById;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Application.Interfaces.FacadPattern
         IGetProductAdmin GetProductAdmin { get; }
         IGetProductSiteById GetProductSiteById { get; }
         IGetAllProductForSite GetAllProductForSite { get; }
+        IGetProductForSite GetProductForSite { get; }
 
 
     }
