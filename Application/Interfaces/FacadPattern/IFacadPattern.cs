@@ -2,8 +2,10 @@
 using Application.Services.Categories.Queries.GetAllCategory;
 using Application.Services.Categories.Queries.GetCategories;
 using Application.Services.Products.Commands;
+using Application.Services.Products.Queries.GetAllProductForSite;
 using Application.Services.Products.Queries.GetProductAdmin;
 using Application.Services.Products.Queries.GetProductDetailAdmin;
+using Application.Services.Products.Queries.GetProductSiteById;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,8 @@ namespace Application.Interfaces.FacadPattern
         IGetAllCategory GetAllCategory { get; }
         IGetProductDetailAdmin GetProductDetailAdmin { get; }
         IGetProductAdmin GetProductAdmin { get; }
+        IGetProductSiteById GetProductSiteById { get; }
+        IGetAllProductForSite GetAllProductForSite { get; }
 
 
     }

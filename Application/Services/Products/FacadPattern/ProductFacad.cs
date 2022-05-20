@@ -4,8 +4,10 @@ using Application.Services.Categories.Commands.AddNewCategory;
 using Application.Services.Categories.Queries.GetAllCategory;
 using Application.Services.Categories.Queries.GetCategories;
 using Application.Services.Products.Commands;
+using Application.Services.Products.Queries.GetAllProductForSite;
 using Application.Services.Products.Queries.GetProductAdmin;
 using Application.Services.Products.Queries.GetProductDetailAdmin;
+using Application.Services.Products.Queries.GetProductSiteById;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
@@ -75,6 +77,22 @@ namespace Application.Services.Categories.FacadPattern
             get
             {
                 return _getProductAdmin = _getProductAdmin ?? new GetProductAdmin(_context);
+            }
+        }
+        private IGetProductSiteById _getProductSiteById;
+        public IGetProductSiteById GetProductSiteById 
+        {
+            get
+            {
+                return _getProductSiteById = _getProductSiteById ?? new GetProductSiteById(_context);
+            }
+        }
+        private IGetAllProductForSite _getAllProductForSite;
+        public IGetAllProductForSite GetAllProductForSite 
+        {
+            get
+            {
+                return _getAllProductForSite = _getAllProductForSite ?? new GetAllProductForSite(_context);
             }
         }
     }

@@ -5,6 +5,7 @@ using Application.Services.Categories.Commands.RemoveCategory;
 using Application.Services.Categories.FacadPattern;
 using Application.Services.Categories.Queries.GetAllCategory;
 using Application.Services.Categories.Queries.GetCategories;
+using Application.Services.Products.Queries.GetProductSiteById;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,7 @@ namespace EndPoint
         {
             services.AddControllersWithViews();
             services.AddScoped<IGetCategories, GetCategories>();
+            services.AddScoped<IGetProductSiteById, GetProductSiteById>();
             services.AddScoped<IGetAllCategory, GetAllCategory>();
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IAddNewCategory, AddNewCategory>();

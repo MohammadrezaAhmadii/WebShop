@@ -18,19 +18,17 @@ namespace Application.Services.Categories.Queries.GetAllCategory
         public ResultDto<List<GetAllCategoryDto>> Result()
         {
             var Categories = _context.Categories
-                .Include(p => p.ParentCategory)
                 .Where(p => p.ParentCategoryId != null)
                 .ToList()
                 .Select(p => new GetAllCategoryDto
                 {
                     Id = p.Id,
-                    Name = $"{p.ParentCategory.Name} - {p.Name}"
+                    Name = p.Name
                 }).ToList();
             return new ResultDto<List<GetAllCategoryDto>>()
             {
                 Date = Categories,
-                IsSuccess = false,
-                Message = ""
+                IsSuccess = true,
 
             };
         }
