@@ -12,7 +12,8 @@ namespace EndPoint.Site.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            return View(viewName: "GetMenu", _getMenuItem.ResultDto().Date);
+            var menuItem = _getMenuItem.ResultDto();
+            return View(viewName: "GetMenu", menuItem.Date);
         }
     }
 }

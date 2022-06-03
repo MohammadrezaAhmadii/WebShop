@@ -3,8 +3,6 @@
 @{
     Layout = null;
 }
-
-
 @foreach (var item in Model)
 {
 
@@ -20,7 +18,7 @@
         @foreach (var itemChild in item.child)
         {
             <li class="menu-mega-item menu-item-type-mega-menu item-small">
-                <a href="~/products/index?CatId=@itemChild.catId" class="mega-menu-link">
+                <a href="~/products/index?Id=@itemChild.catId" class="mega-menu-link">
                     @itemChild.Name
                 </a>
             </li>
