@@ -48,6 +48,15 @@ namespace Application.Services.Categories.FacadPattern
             }
         }
 
+        private RemoveProduct _removeProduct;
+        public RemoveProduct RemoveProduct
+        {
+            get
+            {
+                return _removeProduct = _removeProduct ?? new RemoveProduct(_context);
+            }
+        }
+
         private IGetCategories _getCategories;
         public IGetCategories GetCategories
         {
@@ -104,6 +113,5 @@ namespace Application.Services.Categories.FacadPattern
                 return _getProductForSite = _getProductForSite ?? new GetProductForSite(_context);
             }
         }
-
     }
 }

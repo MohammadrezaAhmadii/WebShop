@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 
 namespace testWebsit.Areas.Admin.Controllers
@@ -44,6 +45,10 @@ namespace testWebsit.Areas.Admin.Controllers
             request.ProductImages = images;
             request.ProductFeatures = Features;
             return Json(_productFacad.AddNewProduct.ExecutResult(request));
+        }
+        public IActionResult RemoveProduct(long Id)
+        {
+            return Json(_productFacad.RemoveProduct.ExecutResult(Convert.ToString(Id)));
         }
     }
 }
