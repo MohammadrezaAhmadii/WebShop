@@ -46,9 +46,10 @@ namespace testWebsit.Areas.Admin.Controllers
             request.ProductFeatures = Features;
             return Json(_productFacad.AddNewProduct.ExecutResult(request));
         }
-        public IActionResult RemoveProduct(long Id)
+        [HttpPost]
+        public IActionResult RemoveProduct(long productId)
         {
-            return Json(_productFacad.RemoveProduct.ExecutResult(Convert.ToString(Id)));
+            return Json(_productFacad.RemoveProduct.ExecutResult(Convert.ToString(productId)));
         }
     }
 }
