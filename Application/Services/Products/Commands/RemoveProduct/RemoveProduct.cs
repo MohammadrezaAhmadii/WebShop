@@ -18,11 +18,11 @@ namespace Application.Services.Products.Commands
         {
             _context = context;
         }
-        public ResultDto ExecutResult(string productId = null)
+        public ResultDto ExecutResult(long productId)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(productId)) 
+                if (productId == 0) 
                 {
                     return new ResultDto
                     {
@@ -31,7 +31,7 @@ namespace Application.Services.Products.Commands
                     };
                 }
 
-                Product product = _context.Products.FirstOrDefault(x => x.Id == Convert.ToInt32(productId));
+                Product product = _context.Products.FirstOrDefault(x => x.Id == productId);
                 product.IsRemoved = true;
                 _context.SaveChanges();
 

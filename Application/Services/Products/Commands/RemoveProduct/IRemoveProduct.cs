@@ -7,6 +7,6 @@ namespace Application.Services.Products.Commands
 {
     public interface IRemoveProduct
     {
-        ResultDto ExecutResult(string productId);
+        ResultDto ExecutResult(long productId);
     }
 }

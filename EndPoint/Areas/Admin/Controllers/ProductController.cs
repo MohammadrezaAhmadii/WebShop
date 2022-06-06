@@ -49,7 +49,7 @@ namespace testWebsit.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult RemoveProduct(long productId)
         {
-            return Json(_productFacad.RemoveProduct.ExecutResult(Convert.ToString(productId)));
+            return Json(_productFacad.RemoveProduct.ExecutResult(productId));
         }
     }
 }
