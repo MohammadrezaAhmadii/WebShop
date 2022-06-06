@@ -26,6 +26,7 @@ namespace Application.Interfaces.FacadPattern
         IGetProductSiteById GetProductSiteById { get; }
         IGetAllProductForSite GetAllProductForSite { get; }
         IGetProductForSite GetProductForSite { get; }
+        RemoveProduct RemoveProduct { get; }
 
 
     }
