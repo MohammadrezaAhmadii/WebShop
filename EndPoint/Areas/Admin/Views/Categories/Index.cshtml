@@ -42,10 +42,11 @@
                                                         <td>
                                                             @{
                                                                 string parent = item.Parent != null ? item.Parent.Name : "-";
+                                                               
                                                         }
 
                                                         <text> @parent </text>
-                                                        @*<button class="btn btn-danger" onclick="DeleteCategory('@item.Id')">حذف</button>*@
+                                                        
                                                     </td>
                                                     <td>
                                                         @if (item.Parent == null)
@@ -56,9 +57,10 @@
                                                         @if (item.HasChild == true)
                                                         {
                                                             <a href="~/admin/categories/index?ParentId=@item.Id" class="btn btn-info">مشاهده لیست فرزند ها </a>
+                                                            
                                                         }
-                                                        
-
+                                                        <a onclick="DeleteCategory(@item.Id)" class="btn btn-danger">حذف</a>
+                                                         
                                                     </td>
                                                 </tr>
                                             }
@@ -81,28 +83,28 @@
 
     <script>
         
-
-        function DeleteCategory(id) {
+                function DeleteCategory(Id) {
             swal.fire({
-                title: 'حذف دسته بندی',
-                text: "کاربر گرامی از حذف دسته بندی مطمئن هستید؟",
-                icon: 'warning',
+                title: 'حذف محصول',
+                text: "آیا میخواهید محصول را حذف نمائید؟",
+                icon: 'info',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#7cacbe',
-                confirmButtonText: 'بله ، دسته بندی حذف شود',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله حذف شود',
                 cancelButtonText: 'خیر'
             }).then((result) => {
                 if (result.value) {
+
                     var postData = {
-                        'id': id
+                        'Id': Id,
                     };
 
                     $.ajax({
                         contentType: 'application/x-www-form-urlencoded',
                         dataType: 'json',
                         type: "POST",
-                        url: "Delete",
+                        url: "RemoveCategory",
                         data: postData,
                         success: function (data) {
                             if (data.isSuccess == true) {
@@ -113,6 +115,8 @@
                                 ).then(function (isConfirm) {
                                     location.reload();
                                 });
+
+
                             }
                             else {
 
@@ -132,5 +136,60 @@
 
                 }
             })
+        }
+
+
+
+
+        //function DeleteCategory(id) {
+        //    swal.fire({
+        //        title: 'حذف دسته بندی',
+        //        text: "کاربر گرامی از حذف دسته بندی مطمئن هستید؟",
+        //        icon: 'warning',
+        //        showCancelButton: true,
+        //        confirmButtonColor: '#d33',
+        //        cancelButtonColor: '#7cacbe',
+        //        confirmButtonText: 'بله ، دسته بندی حذف شود',
+        //        cancelButtonText: 'خیر'
+        //    }).then((result) => {
+        //        if (result.value) {
+        //            var postData = {
+        //                'id': id
+        //            };
+
+        //            $.ajax({
+        //                contentType: 'application/x-www-form-urlencoded',
+        //                dataType: 'json',
+        //                type: "POST",
+        //                url: "Categories/RemoveCategory",
+        //                data: postData,
+        //                success: function (data) {
+        //                    if (data.isSuccess == true) {
+        //                        swal.fire(
+        //                            'موفق!',
+        //                            data.message,
+        //                            'success'
+        //                        ).then(function (isConfirm) {
+        //                            location.reload();
+        //                        });
+        //                    }
+        //                    else {
+
+        //                        swal.fire(
+        //                            'هشدار!',
+        //                            data.message,
+        //                            'warning'
+        //                        );
+
+        //                    }
+        //                },
+        //                error: function (request, status, error) {
+        //                    alert(request.responseText);
+        //                }
+
+        //            });
+
+        //        }
+        //    })
         </script>
 }

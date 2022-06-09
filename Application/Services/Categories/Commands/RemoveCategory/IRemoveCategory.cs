@@ -10,7 +10,7 @@ namespace Application.Services.Categories.Commands.RemoveCategory
 {
     public interface IRemoveCategory
     {
-        ResultDto ExecutResult(long id, long? parentId);
+        ResultDto ExecutResult(long id);
     }
     public class RemoveCategory : IRemoveCategory
     {
@@ -19,11 +19,11 @@ namespace Application.Services.Categories.Commands.RemoveCategory
         {
             _context = context;
         }
-        public ResultDto ExecutResult(long id, long? parentId)
+        public ResultDto ExecutResult(long id)
         {
 
-            var category = _context.Categories.FirstOrDefault(p => p.Id == id || p.ParentCategory.Id == parentId);
-            if (category != null)
+            var category = _context.Categories.FirstOrDefault(p => p.Id == id);
+            if (category == null)
             {
                 return new ResultDto
                 {

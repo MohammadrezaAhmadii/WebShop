@@ -38,9 +38,9 @@ namespace testWebsit.Areas.Admin.Controllers
             return Json(result);
         }
         [HttpPost]
-        public IActionResult RemoveCategory(long id, long? parentId)
+        public IActionResult RemoveCategory(long Id)
         {
-            var result = _removeCategory.ExecutResult(id, parentId);
+            var result = _removeCategory.ExecutResult(Id);
             return Json(result);
         }
     }
