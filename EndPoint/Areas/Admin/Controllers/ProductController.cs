@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces.FacadPattern;
 using Application.Services.Categories.FacadPattern;
 using Application.Services.Products.Commands;
+using Application.Services.Products.Queries.GetProductDetailAdmin;
+using Common.Dto;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +52,24 @@ namespace testWebsit.Areas.Admin.Controllers
         public IActionResult RemoveProduct(long productId)
         {
             return Json(_productFacad.RemoveProduct.ExecutResult(productId));
+        }
+        [HttpGet]
+        public IActionResult EditProduct(long Id)
+        {
+            return View(_productFacad.GetProductDetailAdmin.Execut(Id).Date);
+        }
+        [HttpPost]
+        public IActionResult EditProduct(ProductDetailDto request, List<ProductFeaturesDto> Features)
+        {
+            List<IFormFile> images = new List<IFormFile>();
+            for (int i = 0; i < Request.Form.Files.Count; i++)
+            {
+                var file = Request.Form.Files[i];
+                images.Add(file);
+            }
+            //request.Images = images;
+            //request.Feachers = Features;
+            return Json(_productFacad.EditProduct.resultDto(request));
         }
     }
 }

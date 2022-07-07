@@ -35,7 +35,6 @@ namespace Application.Services.Products.Queries.GetProductDetailAdmin
                 Date = new ProductDetailDto
                 {
                     Id = product.Id,
-
                     Name = product.Name,
                     Model = product.Model,
                     Brand = product.Brand,

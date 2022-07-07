@@ -1,6 +1,7 @@
 using Application.Interfaces.Context;
 using Application.Interfaces.FacadPattern;
 using Application.Services.Categories.Commands.AddNewCategory;
+using Application.Services.Categories.Commands.EditCategory;
 using Application.Services.Categories.Commands.RemoveCategory;
 using Application.Services.Categories.FacadPattern;
 using Application.Services.Categories.Queries.GetAllCategory;
@@ -40,6 +41,7 @@ namespace EndPoint
             services.AddScoped<IGetAllCategory, GetAllCategory>();
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IAddNewCategory, AddNewCategory>();
+            services.AddScoped<IEditCategory, EditCategory>();
             services.AddScoped<IRemoveCategory, RemoveCategory>();
             services.AddScoped<IFacadPattern, ProductFacad>();
             services.AddScoped<IGetMenuItem, GetMenuItem>();

@@ -4,6 +4,7 @@ using Application.Services.Categories.Commands.AddNewCategory;
 using Application.Services.Categories.Queries.GetAllCategory;
 using Application.Services.Categories.Queries.GetCategories;
 using Application.Services.Products.Commands;
+using Application.Services.Products.Commands.EditProduct;
 using Application.Services.Products.Queries.GetAllProductForSite;
 using Application.Services.Products.Queries.GetProductAdmin;
 using Application.Services.Products.Queries.GetProductDetailAdmin;
@@ -113,5 +114,14 @@ namespace Application.Services.Categories.FacadPattern
                 return _getProductForSite = _getProductForSite ?? new GetProductForSite(_context);
             }
         }
+        private IEditProduct _editProduct;
+        public IEditProduct EditProduct 
+        {
+            get
+            {
+                return _editProduct = _editProduct ?? new EditProduct(_context,_environment);
+            }
+        }
+
     }
 }

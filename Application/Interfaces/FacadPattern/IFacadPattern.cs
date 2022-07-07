@@ -2,6 +2,7 @@
 using Application.Services.Categories.Queries.GetAllCategory;
 using Application.Services.Categories.Queries.GetCategories;
 using Application.Services.Products.Commands;
+using Application.Services.Products.Commands.EditProduct;
 using Application.Services.Products.Queries.GetAllProductForSite;
 using Application.Services.Products.Queries.GetProductAdmin;
 using Application.Services.Products.Queries.GetProductDetailAdmin;
@@ -27,6 +28,7 @@ namespace Application.Interfaces.FacadPattern
         IGetAllProductForSite GetAllProductForSite { get; }
         IGetProductForSite GetProductForSite { get; }
         RemoveProduct RemoveProduct { get; }
+        IEditProduct EditProduct { get; }
 
 
     }
