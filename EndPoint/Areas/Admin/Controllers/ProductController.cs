@@ -67,8 +67,8 @@ namespace testWebsit.Areas.Admin.Controllers
                 var file = Request.Form.Files[i];
                 images.Add(file);
             }
-            //request.Images = images;
-            //request.Feachers = Features;
+            request.Images = images;
+            request.Feachers = Features;
             return Json(_productFacad.EditProduct.resultDto(request));
         }
     }

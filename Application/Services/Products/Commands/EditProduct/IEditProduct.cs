@@ -30,13 +30,13 @@ namespace Application.Services.Products.Commands.EditProduct
         public ResultDto resultDto(ProductDetailDto model)
         {
             var res = _context.Products.FirstOrDefault(p=>p.Id == model.Id);
-            var resCat = _context.Categories.FirstOrDefault(c => c.Id == model.CategoryId);
+            //var resCat = _context.Categories.FirstOrDefault(c => c.Id == model.CategoryId);
             res.Name = model.Name;  
             res.Brand = model.Brand;
             res.UpdateDateTime = DateTime.Now;
             res.Inventory = model.Inventory;
-            res.Price = model.Price;
-            res.Category = resCat;
+            //res.Price = model.Price;
+            //res.Category = resCat;
             List<ProductFeatures> ProductFeatures = new List<ProductFeatures>();
             foreach (var item in ProductFeatures)
             {
@@ -52,11 +52,11 @@ namespace Application.Services.Products.Commands.EditProduct
             List<ProductImages> ProductImages = new List<ProductImages>();
             foreach (var item in model.Images)
             {
-                var uploadedResult = UploadFile(item.Src);
+                //var uploadedResult = UploadFile(item.Src);
                 ProductImages.Add(new ProductImages
                 {
                     Product = res,
-                    Src = uploadedResult.FileNameAddress,
+                    //Src = uploadedResult.FileNameAddress,
                 });
             }
             _context.Images.AddRange(ProductImages);
