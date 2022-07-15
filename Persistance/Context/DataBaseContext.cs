@@ -2,6 +2,7 @@
 using Domain.Entities.Categories;
 using Domain.Entities.Common;
 using Domain.Entities.Products;
+using Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,9 @@ namespace Persistance.Context
             modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<ProductFeatures>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<ProductImages>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<UserRoleType>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<RoleType>().HasQueryFilter(p => !p.IsRemoved);
         }
 
     }
